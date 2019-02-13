@@ -1,10 +1,17 @@
 package org.iesalandalus.programacion.reservasaulas.modelo.dominio;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
+
+import org.junit.Test;
+
 public class AulaTest {
-	/*
+	
 	private static final String ERROR_EXCEPCION = "Debería haber saltado la excepción.";
-	private static final String ERROR_NO_EXCEPCION = "No deberÃ­a haber saltado la excepciÃ³n.";
-	private static final String nombre = "SalÃ³n de actos";
+	private static final String ERROR_NO_EXCEPCION = "No debería haber saltado la excepción.";
+	private static final String nombre = "Salón de actos";
 
 	@Test
 	public void constructorUnParametroValidoTest() {
@@ -32,7 +39,7 @@ public class AulaTest {
 			aula = new Aula("");
 			fail(ERROR_EXCEPCION);
 		} catch (IllegalArgumentException e) {
-			assertEquals("El nombre del aula no puede estar vacÃ­o.", e.getMessage());
+			assertEquals("El nombre del aula no puede estar vacío.", e.getMessage());
 			assertNull(aula);
 		}
 	}
@@ -82,7 +89,7 @@ public class AulaTest {
 	public void equalTest() {
 		Aula aula = new Aula(nombre);
 		Aula aula1 = new Aula(nombre);
-		Aula aula2 = new Aula("AndrÃ©s");
+		Aula aula2 = new Aula("Andrés");
 		assertNotEquals(aula, null);
 		assertNotEquals(aula, "");
 		assertEquals(aula, aula);
@@ -93,7 +100,7 @@ public class AulaTest {
 	@Test
 	public void toStringTest() {
 		Aula aula = new Aula(nombre);
-		assertEquals("[nombre=SalÃ³n de actos]", aula.toString());
+		assertEquals("[nombre=Salón de actos]", aula.toString());
 	}
-*/
+
 }
