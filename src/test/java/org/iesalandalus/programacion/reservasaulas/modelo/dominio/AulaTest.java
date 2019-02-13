@@ -2,7 +2,7 @@ package org.iesalandalus.programacion.reservasaulas.modelo.dominio;
 
 public class AulaTest {
 	/*
-	private static final String ERROR_EXCEPCION = "Debería haber saltado la excepción.";
+	private static final String ERROR_EXCEPCION = "Deber�a haber saltado la excepci�n.";
 	private static final String ERROR_NO_EXCEPCION = "No debería haber saltado la excepción.";
 	private static final String nombre = "Salón de actos";
 
