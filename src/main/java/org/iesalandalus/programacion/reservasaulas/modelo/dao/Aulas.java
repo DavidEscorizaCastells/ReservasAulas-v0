@@ -89,7 +89,6 @@ public class Aulas {
 
 	
 	public Aula buscar(Aula aula) {
-		
 			
 		if (aula==null || buscarIndiceAula(aula)==-1)
 			return null;
