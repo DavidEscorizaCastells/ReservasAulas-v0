@@ -77,7 +77,7 @@ public class ModeloReservasAulas {
 		return reservas.getNumReservas();
 	}
 	
-	public String[] represerntarReservas() {
+	public String[] representarReservas() {
 		return reservas.representar();
 	}
 	

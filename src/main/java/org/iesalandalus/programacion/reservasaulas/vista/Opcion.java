@@ -57,13 +57,13 @@ public enum Opcion {
 	
 	INSERTAR_RESERVA("Insertar reserva") {
 		public void ejecutar() {
-			vista.insertarReserva();
+			vista.realizarReserva();
 		}
 	},
 	
 	BORRAR_RESERVA("Borrar reserva") {
 		public void ejecutar() {
-			vista.borrarReserva();
+			vista.anularReserva();
 		}
 	},
 	
@@ -98,6 +98,7 @@ public enum Opcion {
 	};
 	
 	private String mensajeAMostrar;
+	private static IUTextual vista;
 	
 	private Opcion(String mensajeAMostrar) {
 		this.mensajeAMostrar=mensajeAMostrar;
