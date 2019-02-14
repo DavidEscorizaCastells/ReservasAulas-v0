@@ -17,8 +17,8 @@ public class IUTextual {
 	private static final String CORREO_VALIDO="lDavi14@hotmail.com";
 	private ModeloReservasAulas modelo;
 	
-	public UITextual() {
-		
+	public IUTextual() {
+		Opcion.setVista(this);
 	}
 	
 	public void comenzar(){
@@ -151,12 +151,7 @@ public class IUTextual {
 	}
 	
 	/*private Reserva leerReserva(Profesor profesor) {
-		Consola.mostrarCabecera("Realizar reserva profesor");
 		
-		try {
-			Profesor profesorAReservar=Consola.leerProfesor();
-			
-		} catch
 	}*/
 	
 	public void aunlaReserva() {

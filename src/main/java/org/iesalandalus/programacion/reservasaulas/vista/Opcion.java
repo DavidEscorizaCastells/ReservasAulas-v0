@@ -63,7 +63,7 @@ public enum Opcion {
 	
 	BORRAR_RESERVA("Borrar reserva") {
 		public void ejecutar() {
-			vista.anularReserva();
+			vista.aunlaReserva();
 		}
 	},
 	
