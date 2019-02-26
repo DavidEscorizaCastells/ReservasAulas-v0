@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Permanencia {
 	private LocalDate dia;
-	static final private DateTimeFormatter FORMATO_DIA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	private static final DateTimeFormatter FORMATO_DIA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	private Tramo tramo;
 	
 	public Permanencia (LocalDate dia, Tramo tramo) {
@@ -17,8 +17,8 @@ public class Permanencia {
 		if (otraPermanencia==null)
 			throw new IllegalArgumentException ("No se puede copiar una permanencia nula.");
 			
-		dia=otraPermanencia.dia;
-		tramo=otraPermanencia.tramo;
+		setDia(otraPermanencia.dia);
+		setTramo(otraPermanencia.tramo);
 	}
 
 	public LocalDate getDia() {

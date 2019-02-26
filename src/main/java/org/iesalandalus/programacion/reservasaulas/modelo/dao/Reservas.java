@@ -49,73 +49,70 @@ public class Reservas {
 		if (reserva==null)
 			throw new IllegalArgumentException ("No se puede realizar una reserva nula.");
 		
-		for (int i=0; i<MAX_RESERVAS;i++)
-			if (reserva.equals(reservas[i]))
-				throw new OperationNotSupportedException ("La reserva ya existe.");
-			else
-				if (reservas[i]==null) {
-					reservas[i]=reserva;
-					i=MAX_RESERVAS;
-					numReservas++;
-					}
+		int indice = buscarIndiceReserva(reserva);
+		if (!indiceNoSuperaTamano(indice)) {
+			reservas[indice] = reserva;
+			numReservas++;
+		} else {
+			if (indiceNoSuperaCapacidad(indice)) {
+				throw new OperationNotSupportedException("La reserva ya existe.");
+			} else {
+				throw new OperationNotSupportedException("No se aceptan más reservas.");
+			}
+		}
 	}	
 	
 	private int buscarIndiceReserva(Reserva reserva) {
-		int indice=-1;
-		for (int i=0; i<MAX_RESERVAS && reservas[i]!=null; i++)
-			if (reservas[i].equals(reserva) ) {
-				indice=i;
-				i=MAX_RESERVAS;
+		int indice=0;
+		boolean reservaEncontrada = false;
+		while (indiceNoSuperaTamano(indice) && !reservaEncontrada) {
+			if (reservas[indice].equals(reserva)) {
+				reservaEncontrada = true;
+			} else {
+				indice++;
 			}
+		}
 		return indice;
 	}
 	
-	private boolean indiceNoSuperaTamaño(int indice) throws OperationNotSupportedException {
-		if (indice<0)
-			throw new OperationNotSupportedException("El indice no puede ser negativo.");		
-		else if (indice>=MAX_RESERVAS)
-			return false;
-		else if (reservas[indice]==null)
-			return false;
-		else 
-			return true;
+	private boolean indiceNoSuperaTamano(int indice) {
+		return indice<numReservas;
 	}
 	
-	private boolean indiceNoSuperaCapacidad(int indice) throws OperationNotSupportedException {
-		if (indice<0)
-			throw new OperationNotSupportedException("El indice no puede ser negativo.");		
-		else if (indice>=MAX_RESERVAS)
-			return false;
-		else
-			return true;
+	private boolean indiceNoSuperaCapacidad(int indice) {
+		return indice<MAX_RESERVAS;
 	}
 
 	
 	public Reserva buscar(Reserva reserva) {
-			
-		if (reserva==null || buscarIndiceReserva(reserva)==-1)
+		int indice = 0;
+		indice = buscarIndiceReserva(reserva);
+		if (indiceNoSuperaTamano(indice)) {
+			return reservas[indice];
+		} else {
 			return null;
-		return reservas[buscarIndiceReserva(reserva)];
+		}
 	}
 	
 	public void borrar(Reserva reserva) throws OperationNotSupportedException {
 		if (reserva==null)
 			throw new IllegalArgumentException ("No se puede anular una reserva nula.");
 		
-		if (buscarIndiceReserva(reserva)==-1)
-			throw new OperationNotSupportedException ("La reserva a anular no existe.");
-		desplazarUnaPosicionHaciaIzquierda(buscarIndiceReserva(reserva));
-		numReservas--;
+		int indice = buscarIndiceReserva(reserva);
+		if (indiceNoSuperaTamano(indice)) {
+			desplazarUnaPosicionHaciaIzquierda(indice);
+		}
+		else {
+			throw new OperationNotSupportedException("La reserva a anular no existe.");
+		}
 	}
 	
 	private void desplazarUnaPosicionHaciaIzquierda (int indice) {
-		reservas[indice]=null;
-		for (int i=indice; i<MAX_RESERVAS-1; i++) {
-			if (reservas[i+1]!=null) {
-				reservas[i]=reservas[i+1];
-				reservas[i+1]=null;
-			}
+		for (int i = indice; i < numReservas - 1; i++) {
+			reservas[i] = reservas[i+1];
 		}
+		reservas[numReservas] = null;
+		numReservas--;
 	}
 	
 	public String[] representar() {

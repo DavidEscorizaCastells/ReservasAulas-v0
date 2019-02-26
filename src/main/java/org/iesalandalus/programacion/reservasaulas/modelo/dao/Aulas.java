@@ -45,79 +45,76 @@ public class Aulas {
 	public void insertar(Aula aula) throws OperationNotSupportedException {
 		if (aula==null)
 			throw new IllegalArgumentException ("No se puede insertar un aula nula.");
+		int indice = buscarIndiceAula(aula);
+		if (!indiceNoSuperaTamano(indice)) {
+			aulas[indice] = aula;
+			numAulas++;
+		} else {
+			if (indiceNoSuperaCapacidad(indice)) {
+				throw new OperationNotSupportedException("El aula ya existe.");
+			} else {
+				throw new OperationNotSupportedException("No se aceptan más aulas.");
+			}
+		}
+	}
 		
-		for (int i=0; i<MAX_AULAS;i++)
-			if (aula.equals(aulas[i]))
-				throw new OperationNotSupportedException ("El aula ya existe.");
-			else
-				if (aulas[i]==null) {
-					aulas[i]=aula;
-					i=MAX_AULAS;
-					numAulas++;
-					}
-	}	
 	
 	private int buscarIndiceAula(Aula aula) {
-		int indice=-1;
-		for (int i=0; i<MAX_AULAS && aulas[i]!=null; i++)
-			if (aulas[i].equals(aula) ) {
-				indice=i;
-				i=MAX_AULAS;
+		int indice=0;
+		boolean aulaEncontrada = false;
+		while (indiceNoSuperaTamano(indice) && !aulaEncontrada) {
+			if (aulas[indice].equals(aula)) {
+				aulaEncontrada = true;
+			} else {
+				indice++;
 			}
+		}
 		return indice;
 	}
 	
-	private boolean indiceNoSuperaTamaño(int indice) throws OperationNotSupportedException {
-		if (indice<0)
-			throw new OperationNotSupportedException("El indice no puede ser negativo.");		
-		else if (indice>=MAX_AULAS)
-			return false;
-		else if (aulas[indice]==null)
-			return false;
-		else 
-			return true;
+	private boolean indiceNoSuperaTamano(int indice) {
+		return indice<numAulas;
 	}
 	
 	private boolean indiceNoSuperaCapacidad(int indice) throws OperationNotSupportedException {
-		if (indice<0)
-			throw new OperationNotSupportedException("El indice no puede ser negativo.");		
-		else if (indice>=MAX_AULAS)
-			return false;
-		else
-			return true;
+		return indice<MAX_AULAS;
 	}
 
 	
 	public Aula buscar(Aula aula) {
-			
-		if (aula==null || buscarIndiceAula(aula)==-1)
+		int indice = 0;
+		indice = buscarIndiceAula(aula);
+		if (indiceNoSuperaTamano(indice)) {
+			return aulas[indice];
+		} else {
 			return null;
-		return aulas[buscarIndiceAula(aula)];
+		}			
 	}
 	
 	public void borrar(Aula aula) throws OperationNotSupportedException {
 		if (aula==null)
 			throw new IllegalArgumentException ("No se puede borrar un aula nula.");
 		
-		if (buscarIndiceAula(aula)==-1)
-			throw new OperationNotSupportedException ("El aula a borrar no existe.");
-		desplazarUnaPosicionHaciaIzquierda(buscarIndiceAula(aula));
-		numAulas--;
+		int indice = buscarIndiceAula(aula);
+		if (indiceNoSuperaTamano(indice)) {
+			desplazarUnaPosicionHaciaIzquierda(indice);
+		}
+		else {
+			throw new OperationNotSupportedException("El aula a borrar no existe.");
+		}
 	}
 	
-	private void desplazarUnaPosicionHaciaIzquierda (int indice) {
-		aulas[indice]=null;
-		for (int i=indice; i<MAX_AULAS-1; i++) {
-			if (aulas[i+1]!=null) {
-				aulas[i]=aulas[i+1];
-				aulas[i+1]=null;
-			}
+	private void desplazarUnaPosicionHaciaIzquierda(int indice) {
+		for (int i = indice; i < numAulas - 1; i++) {
+			aulas[i] = aulas[i+1];
 		}
+		aulas[numAulas] = null;
+		numAulas--;
 	}
 	
 	public String[] representar() {
 		String[] representacion=new String[numAulas];
-		for (int i=0;i<numAulas;i++) {
+		for (int i=0;indiceNoSuperaTamano(i);i++) {
 			representacion[i]=aulas[i].toString();			
 		}
 		return representacion;

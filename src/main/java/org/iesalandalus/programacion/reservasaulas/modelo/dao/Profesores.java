@@ -45,72 +45,69 @@ public class Profesores {
 		if (profesor==null)
 			throw new IllegalArgumentException ("No se puede insertar un profesor nulo.");
 		
-		for (int i=0; i<MAX_PROFESORES;i++)
-			if (profesor.equals(profesores[i]))
-				throw new OperationNotSupportedException ("El profesor ya existe.");
-			else
-				if (profesores[i]==null) {
-					profesores[i]=profesor;
-					i=MAX_PROFESORES;
-					numProfesores++;
-					}
+		int indice = buscarIndiceProfesor(profesor);
+		if (!indiceNoSuperaTamano(indice)) {
+			profesores[indice] = profesor;
+			numProfesores++;
+		} else {
+			if (indiceNoSuperaCapacidad(indice)) {
+				throw new OperationNotSupportedException("El profesor ya existe.");
+			} else {
+				throw new OperationNotSupportedException("No se aceptan más profesores.");
+			}
+		}
 	}
 	
 	private int buscarIndiceProfesor(Profesor profesor) {
-		int indice=-1;
-		for (int i=0; i<MAX_PROFESORES && profesores[i]!=null; i++)
-			if (profesores[i].equals(profesor) ) {
-				indice=i;
-				i=MAX_PROFESORES;
+		int indice=0;
+		boolean profesorEncontrado = false;
+		while (indiceNoSuperaTamano(indice) && !profesorEncontrado) {
+			if (profesores[indice].equals(profesor)) {
+				profesorEncontrado = true;
+			} else {
+				indice++;
 			}
+		}
 		return indice;
 	}
 	
-	private boolean indiceNoSuperaTamaño(int indice) throws OperationNotSupportedException {
-		if (indice<0)
-			throw new OperationNotSupportedException("El indice no puede ser negativo.");		
-		else if (indice>=MAX_PROFESORES)
-			return false;
-		else if (profesores[indice]==null)
-			return false;
-		else 
-			return true;
+	private boolean indiceNoSuperaTamano(int indice) {
+		return indice<numProfesores;
 	}
 	
-	private boolean indiceNoSuperaCapacidad(int indice) throws OperationNotSupportedException {
-		if (indice<0)
-			throw new OperationNotSupportedException("El indice no puede ser negativo.");		
-		else if (indice>=MAX_PROFESORES)
-			return false;
-		else
-			return true;
+	private boolean indiceNoSuperaCapacidad(int indice) {
+		return indice<MAX_PROFESORES;
 	}
 	
 	public Profesor buscar(Profesor profesor) {
-		
-		if (profesor==null || buscarIndiceProfesor(profesor)==-1)
+		int indice = 0;
+		indice = buscarIndiceProfesor(profesor);
+		if (indiceNoSuperaTamano(indice)) {
+			return profesores[indice];
+		} else {
 			return null;
-		return profesores[buscarIndiceProfesor(profesor)];
+		}	
 	}
 	
 	public void borrar(Profesor profesor) throws OperationNotSupportedException {
 		if (profesor==null)
 			throw new IllegalArgumentException ("No se puede borrar un profesor nulo.");
 		
-		if (buscarIndiceProfesor(profesor)==-1)
-			throw new OperationNotSupportedException ("El profesor a borrar no existe.");
-		desplazarUnaPosicionHaciaIzquierda(buscarIndiceProfesor(profesor));
-		numProfesores--;
+		int indice = buscarIndiceProfesor(profesor);
+		if (indiceNoSuperaTamano(indice)) {
+			desplazarUnaPosicionHaciaIzquierda(indice);
+		}
+		else {
+			throw new OperationNotSupportedException("El profesor a borrar no existe.");
+		}
 	}
 	
 	private void desplazarUnaPosicionHaciaIzquierda (int indice) {
-		profesores[indice]=null;
-		for (int i=indice; i<MAX_PROFESORES-1; i++) {
-			if (profesores[i+1]!=null) {
-				profesores[i]=profesores[i+1];
-				profesores[i+1]=null;
-			}
+		for (int i = indice; i < numProfesores - 1; i++) {
+			profesores[i] = profesores[i+1];
 		}
+		profesores[numProfesores] = null;
+		numProfesores--;
 	}
 	
 	public String[] representar() {

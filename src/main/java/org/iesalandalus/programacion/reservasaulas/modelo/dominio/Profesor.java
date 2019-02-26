@@ -20,11 +20,12 @@ public class Profesor {
 	}
 	
 	public Profesor (Profesor otroProfesor) {
-	if (otroProfesor==null)
+	if (otroProfesor==null) {
 		throw new IllegalArgumentException ("No se puede copiar un profesor nulo.");
-		setNombre(otroProfesor.nombre);
-		setCorreo(otroProfesor.correo);
-		setTelefono(otroProfesor.telefono);
+	}	
+	setNombre(otroProfesor.nombre);
+	setCorreo(otroProfesor.correo);
+	setTelefono(otroProfesor.telefono);
 	}
 
 	public String getNombre() {
@@ -32,12 +33,12 @@ public class Profesor {
 	}
 
 	private void setNombre(String nombre) {
-		if (nombre==null)
+		if (nombre==null) {
 			throw new IllegalArgumentException ("El nombre del profesor no puede ser nulo.");
-		
-		if (nombre.trim()=="") 
+		}
+		if (nombre.trim().equals("")) {
 			throw new IllegalArgumentException ("El nombre del profesor no puede estar vacío.");
-		
+		}
 		this.nombre = nombre;
 	}
 
@@ -46,12 +47,12 @@ public class Profesor {
 	}
 
 	public void setCorreo(String correo) {
-		if (correo==null)
+		if (correo==null) {
 			throw new IllegalArgumentException ("El correo del profesor no puede ser nulo.");
-		
-		if (!correo.matches(ER_CORREO))
+		}
+		if (!correo.matches(ER_CORREO)) {
 			throw new IllegalArgumentException ("El correo del profesor no es válido.");
-		
+		}
 		this.correo = correo;
 	}
 
@@ -60,12 +61,13 @@ public class Profesor {
 	}
 
 	public void setTelefono(String telefono) {
-		if (telefono==null || telefono.matches(ER_TELEFONO))
-			this.telefono=telefono;
-		else 
-			if (!telefono.matches(ER_TELEFONO))
+		if (telefono==null || telefono.matches(ER_TELEFONO)) {
+			this.telefono=telefono;}
+		else {
+			if (!telefono.matches(ER_TELEFONO)) {
 				throw new IllegalArgumentException ("El teléfono del profesor no es válido.");
-		
+			}
+		}
 	}
 
 	@Override

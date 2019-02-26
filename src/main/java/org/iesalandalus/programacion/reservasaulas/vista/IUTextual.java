@@ -18,6 +18,7 @@ public class IUTextual {
 	private ModeloReservasAulas modelo;
 	
 	public IUTextual() {
+		modelo = new ModeloReservasAulas();
 		Opcion.setVista(this);
 	}
 	

@@ -9,7 +9,7 @@ import org.iesalandalus.programacion.reservasaulas.modelo.dominio.Tramo;
 import org.iesalandalus.programacion.utilidades.Entrada;
 
 public class Consola {
-	static final private DateTimeFormatter FORMATO_DIA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	private static final DateTimeFormatter FORMATO_DIA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	
 	private Consola() {}
 	
@@ -50,7 +50,7 @@ public class Consola {
 		String correo=Entrada.cadena();
 		System.out.print("Introduce teléfono del profesor (si tiene): ");
 		String telefono=Entrada.cadena();
-		if (telefono.trim()=="")
+		if (telefono.trim().equals(""))
 			return new Profesor(nombre, correo);
 		else
 			return new Profesor(nombre, correo, telefono);
@@ -66,7 +66,7 @@ public class Consola {
 		do {
 		System.out.print("Selecciona mañana o tarde: ");
 		tramo = Entrada.cadena();
-		} while (tramo.toLowerCase()!="mañana" || tramo.toLowerCase()!="tarde");
+		} while (!tramo.toLowerCase().equals("mañana")|| !tramo.toLowerCase().equals("tarde"));
 		
 		if (tramo.equalsIgnoreCase("mañana"))
 			return Tramo.MANANA;
