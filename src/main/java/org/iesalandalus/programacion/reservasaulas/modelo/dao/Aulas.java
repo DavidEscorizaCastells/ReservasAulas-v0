@@ -53,7 +53,7 @@ public class Aulas {
 			if (indiceNoSuperaCapacidad(indice)) {
 				throw new OperationNotSupportedException("El aula ya existe.");
 			} else {
-				throw new OperationNotSupportedException("No se aceptan m·s aulas.");
+				throw new OperationNotSupportedException("No se aceptan m√°s aulas.");
 			}
 		}
 	}

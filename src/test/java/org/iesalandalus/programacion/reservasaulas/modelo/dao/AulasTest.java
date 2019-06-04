@@ -12,11 +12,11 @@ import org.iesalandalus.programacion.reservasaulas.modelo.dominio.Aula;
 import org.junit.Test;
 
 public class AulasTest {
-	private static final String NOMBRE_SALON1 = "Sal髇 1";
-	private static final String NOMBRE_SALON2 = "Sal髇 2";
-	private static final String NOMBRE_SALON3 = "Sal髇 3";
-	private static final String ERROR_EXCEPCION = "Deber韆 haber saltado la excepci髇.";
-	private static final String ERROR_NO_EXCEPCION = "No deber韆 haber saltado la excepci髇.";
+	private static final String NOMBRE_SALON1 = "Sal贸n 1";
+	private static final String NOMBRE_SALON2 = "Sal贸n 2";
+	private static final String NOMBRE_SALON3 = "Sal贸n 3";
+	private static final String ERROR_EXCEPCION = "Deber铆a haber saltado la excepci贸n.";
+	private static final String ERROR_NO_EXCEPCION = "No deber铆a haber saltado la excepci贸n.";
 	
 	private final Aula salon1 = new Aula(NOMBRE_SALON1);
 	private final Aula salon2 = new Aula(NOMBRE_SALON2);
@@ -200,7 +200,7 @@ public class AulasTest {
 	public void borrarNoValidoTest() {
 		Aulas aulas = insertarTres();
 		try {
-			Aula aula = new Aula("Sal髇 4");
+			Aula aula = new Aula("Sal锟絥 4");
 			aulas.borrar(aula);
 			fail(ERROR_EXCEPCION);
 		} catch (OperationNotSupportedException e) {

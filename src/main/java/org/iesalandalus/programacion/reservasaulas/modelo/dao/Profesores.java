@@ -53,7 +53,7 @@ public class Profesores {
 			if (indiceNoSuperaCapacidad(indice)) {
 				throw new OperationNotSupportedException("El profesor ya existe.");
 			} else {
-				throw new OperationNotSupportedException("No se aceptan m·s profesores.");
+				throw new OperationNotSupportedException("No se aceptan m√°s profesores.");
 			}
 		}
 	}

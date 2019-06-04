@@ -57,7 +57,7 @@ public class Reservas {
 			if (indiceNoSuperaCapacidad(indice)) {
 				throw new OperationNotSupportedException("La reserva ya existe.");
 			} else {
-				throw new OperationNotSupportedException("No se aceptan m·s reservas.");
+				throw new OperationNotSupportedException("No se aceptan m√°s reservas.");
 			}
 		}
 	}	

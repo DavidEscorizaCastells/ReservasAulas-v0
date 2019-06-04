@@ -23,7 +23,7 @@ public class IUTextual {
 	}
 	
 	public void comenzar(){
-		Consola.mostrarCabecera("Programa para gestion de reservas.");
+		Consola.mostrarCabecera("Programa para gestión de reservas.");
 		int ordinalOpcion;
 		do {
 			Consola.mostrarMenu();
@@ -34,7 +34,7 @@ public class IUTextual {
 	}
 	
 	public void salir() {
-		System.out.println("Adios.");
+		System.out.println("Adiós.");
 	}
 	
 	public void insertarAula() {
@@ -68,7 +68,7 @@ public class IUTextual {
 			if (aula != null) {
 				System.out.println("El aula buscada es: " + aula.toString());
 			} else {
-				System.out.println("No existe ning�n aula con ese nombre.");
+				System.out.println("No existe ningún aula con ese nombre.");
 			}
 		} catch (IllegalArgumentException e) {
 			System.out.println(ERROR + e.getMessage());
@@ -117,7 +117,7 @@ public class IUTextual {
 			if (profesor != null) {
 				System.out.println("El profesor buscada es: " + profesor.toString());
 			} else {
-				System.out.println("No existe ning�n profesor con ese nombre.");
+				System.out.println("No existe ningún profesor con ese nombre.");
 			}
 		} catch (IllegalArgumentException e) {
 			System.out.println(ERROR + e.getMessage());

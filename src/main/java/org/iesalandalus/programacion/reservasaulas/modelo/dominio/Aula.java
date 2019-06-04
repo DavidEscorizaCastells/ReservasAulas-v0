@@ -23,7 +23,7 @@ public class Aula {
 			throw new IllegalArgumentException ("El nombre del aula no puede ser nulo.");
 		
 		if (nombre.trim().equals(""))
-			throw new IllegalArgumentException ("El nombre del aula no puede estar vacío.");
+			throw new IllegalArgumentException ("El nombre del aula no puede estar vacÃ­o.");
 		
 		this.nombre = nombre;
 	}

@@ -27,7 +27,7 @@ public class Permanencia {
 
 	private void setDia(LocalDate dia) {
 		if (dia==null)
-			throw new IllegalArgumentException ("El día de una permanencia no puede ser nulo.");
+			throw new IllegalArgumentException ("El dÃ­a de una permanencia no puede ser nulo.");
 
 		this.dia = dia;
 	}
